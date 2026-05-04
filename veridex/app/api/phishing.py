@@ -1,12 +1,9 @@
 from typing import Literal
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
 from app.analyzers.phishing_analyzer import analyze_phishing_text
-from app.db.dependencies import get_db
-from app.db.repository import save_scan_history
 from app.scoring.trust_score import calculate_trust_score, get_recommendation, get_risk_level
 
 
@@ -32,21 +29,11 @@ class PhishingAnalyzeResponse(BaseModel):
 
 # This endpoint receives a message, analyzes it, scores it, and returns advice.
 @router.post("/phishing", response_model=PhishingAnalyzeResponse)
-def analyze_phishing(request: PhishingAnalyzeRequest, db: Session = Depends(get_db)):
+def analyze_phishing(request: PhishingAnalyzeRequest):
     reasons = analyze_phishing_text(request.text)
     trust_score = calculate_trust_score(reasons)
     risk = get_risk_level(trust_score)
     recommendation = get_recommendation(risk)
-
-    save_scan_history(
-        db=db,
-        scan_type="sms",
-        input_value=request.text,
-        trust_score=trust_score,
-        risk=risk,
-        reasons=reasons,
-        recommendation=recommendation,
-    )
 
     return PhishingAnalyzeResponse(
         trust_score=trust_score,

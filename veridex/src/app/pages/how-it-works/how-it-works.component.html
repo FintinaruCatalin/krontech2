@@ -1,0 +1,22 @@
+<section class="page">
+  <div class="hero-label">Arhitectură</div>
+  <h1 class="hero-title">Cum funcționează Veridex</h1>
+  <p class="hero-sub">Un flux simplu, de la mesaj sau link suspect la verdict.</p>
+
+  <div class="how-grid">
+    @for (step of steps; track step.num) {
+      <div class="how-step">
+        <div class="step-num">{{ step.num }}</div>
+        <div class="step-content">
+          <h4>{{ step.title }}</h4>
+          <p>{{ step.desc }}</p>
+          <div class="tech-badges">
+            @for (badge of step.badges; track badge) {
+              <span class="tech-badge">{{ badge }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

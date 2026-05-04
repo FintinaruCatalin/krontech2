@@ -1,0 +1,10 @@
+<section class="page">
+  <app-hero-stats
+    [totalAnalyses]="totalAnalyses()"
+    [alertsCount]="alertsCount()"
+    [riskRate]="riskRate()"
+  />
+
+  <app-analysis-form (analysisCompleted)="handleAnalysisCompleted()" />
+  <app-history (historyLoaded)="updateStats($event)" />
+</section>

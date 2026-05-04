@@ -1,0 +1,18 @@
+<div class="hero-label">Protectie in timp real</div>
+<h1 class="hero-title">Detecteaza phishing si scam-uri</h1>
+<p class="hero-sub">Analizeaza SMS-uri, URL-uri si mesaje suspecte cu ajutorul AI.</p>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-num">{{ totalAnalyses }}</div>
+    <div class="stat-label">Analize totale</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num red">{{ alertsCount }}</div>
+    <div class="stat-label">Alerte generate</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num amber">{{ riskRate | number:'1.0-1' }}%</div>
+    <div class="stat-label">Rata risc detectat (%)</div>
+  </div>
+</div>

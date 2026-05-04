@@ -1,13 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.exc import SQLAlchemyError
 
-from app.api.history import router as history_router
 from app.api.phishing import router as phishing_router
-from app.api.url import router as url_router
 from app.core.config import settings
-from app.db import models
-from app.db.database import Base, engine
 
 
 # This creates the FastAPI application object.
@@ -32,17 +27,6 @@ app.add_middleware(
 # Routers keep endpoints organized in separate files.
 # This adds the phishing endpoints under the /analyze path.
 app.include_router(phishing_router, prefix="/analyze")
-app.include_router(url_router, prefix="/analyze")
-app.include_router(history_router)
-
-
-@app.on_event("startup")
-def create_database_tables():
-    # Importing models above registers tables before SQLAlchemy creates them.
-    try:
-        Base.metadata.create_all(bind=engine)
-    except SQLAlchemyError:
-        pass
 
 
 # This health check is useful for quickly testing that the server is running.
