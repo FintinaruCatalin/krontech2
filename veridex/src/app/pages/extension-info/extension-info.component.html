@@ -1,0 +1,41 @@
+<section class="page">
+  <div class="hero-label">Browser Extension</div>
+  <h1 class="hero-title">Protecție în timp real în browser</h1>
+  <p class="hero-sub">Pagina pregătește zona pentru viitoarea extensie Chrome/Firefox.</p>
+
+  <div class="ext-frame">
+    <div class="ext-popup">
+      <div class="ext-header">
+        <div class="ext-logo">
+          <div class="ext-dot"></div>
+          Veridex
+        </div>
+        <div class="ext-url">exemplu-suspect.ro</div>
+      </div>
+      <div class="ext-body">
+        <div class="ext-section-label">Preview extensie</div>
+        <div class="ext-alert">
+          Aici va apărea verdictul extensiei când funcționalitatea va fi conectată.
+        </div>
+        <div class="ext-actions">
+          <button class="ext-btn primary">Vezi detalii</button>
+          <button class="ext-btn secondary">Închide</button>
+        </div>
+      </div>
+      <div class="ext-footer">Veridex Extension · Manifest V3</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin: 1.5rem 0 0.75rem">Funcționalități planificate</div>
+  <div class="ext-features-grid">
+    @for (feature of features; track feature.letter) {
+      <div class="how-step small">
+        <div class="step-num small">{{ feature.letter }}</div>
+        <div class="step-content">
+          <h4>{{ feature.title }}</h4>
+          <p>{{ feature.desc }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>

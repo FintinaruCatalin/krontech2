@@ -1,0 +1,42 @@
+<div class="result-header">
+  <span class="result-title">Rezultat analiză</span>
+  <span class="verdict-badge" [ngClass]="riskClass(result.risk)">{{ riskLabel(result.risk) }}</span>
+</div>
+
+<div class="score-row">
+  <div class="score-ring">
+    <svg width="72" height="72" viewBox="0 0 72 72">
+      <circle cx="36" cy="36" r="28" fill="none" stroke="#f3f4f6" stroke-width="7"/>
+      <circle
+        cx="36"
+        cy="36"
+        r="28"
+        fill="none"
+        [attr.stroke]="scoreStroke(result.risk)"
+        stroke-width="7"
+        stroke-dasharray="175.9"
+        [attr.stroke-dashoffset]="scoreOffset(result.trust_score)"
+        stroke-linecap="round"
+        style="transform: rotate(-90deg); transform-origin: 50% 50%"
+      />
+    </svg>
+    <div class="score-number" [ngClass]="scoreColorClass(result.risk)">{{ result.trust_score }}</div>
+  </div>
+  <div class="score-info">
+    <h4>Trust Score: {{ result.trust_score }}/100</h4>
+    <p>Risk: {{ result.risk }}</p>
+  </div>
+</div>
+
+<div class="flags-list">
+  @for (reason of result.reasons; track reason) {
+    <div class="flag-item">
+      <div class="flag-dot" [ngClass]="scoreColorClass(result.risk)"></div>
+      {{ reason }}
+    </div>
+  }
+</div>
+
+<div class="rec-box">
+  <strong>Recomandare:</strong> {{ result.recommendation }}
+</div>
