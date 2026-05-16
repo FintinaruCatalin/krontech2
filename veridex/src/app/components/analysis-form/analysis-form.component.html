@@ -1,0 +1,59 @@
+<div class="mode-toggle">
+  <button class="mode-btn" [class.active]="analyzeMode() === 'sms'" (click)="setAnalyzeMode('sms')">SMS</button>
+  <button class="mode-btn" [class.active]="analyzeMode() === 'url'" (click)="setAnalyzeMode('url')">URL</button>
+  <button class="mode-btn" disabled title="Modul audio va fi activat cand endpoint-ul este disponibil.">Audio</button>
+</div>
+
+<div class="input-card">
+  <label class="input-label">
+    {{ analyzeMode() === 'sms' ? 'Lipeste SMS-ul sau mesajul suspect' : 'Introdu URL-ul de verificat' }}
+  </label>
+  <textarea
+    class="analysis-textarea"
+    [ngModel]="analysisInput()"
+    (ngModelChange)="analysisInput.set($event)"
+    [disabled]="analysisLoading()"
+    [placeholder]="analyzeMode() === 'sms'
+      ? 'ex: Felicitari! Ai castigat un voucher de 500 RON. Acceseaza: http://bit.ly/voucher-bcr...'
+      : 'ex: https://bit.ly/link-suspect-123'">
+  </textarea>
+
+  <div class="examples-row">
+    <span class="section-label">Exemple</span>
+    @if (analyzeMode() === 'sms') {
+      <button class="example-chip" (click)="loadExample('scam1')" [disabled]="analysisLoading()">SMS BCR fals</button>
+      <button class="example-chip" (click)="loadExample('scam2')" [disabled]="analysisLoading()">Livrare colet</button>
+      <button class="example-chip" (click)="loadExample('scam3')" [disabled]="analysisLoading()">Castig loterie</button>
+    } @else {
+      <button class="example-chip" (click)="loadUrlExample('bank')" [disabled]="analysisLoading()">Link bancar</button>
+      <button class="example-chip" (click)="loadUrlExample('delivery')" [disabled]="analysisLoading()">Link livrare</button>
+      <button class="example-chip" (click)="loadUrlExample('prize')" [disabled]="analysisLoading()">Link premiu</button>
+    }
+  </div>
+
+  @if (analysisValidation()) {
+    <div class="validation-message">{{ analysisValidation() }}</div>
+  }
+
+  <button class="analyze-btn" (click)="analyze()" [disabled]="analysisLoading()">
+    {{ analysisLoading() ? 'Se analizeaza...' : 'Analizeaza' }}
+  </button>
+</div>
+
+@if (showResult()) {
+  <div class="result-card">
+    @if (analysisLoading()) {
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <span>Analiza ruleaza...</span>
+      </div>
+    } @else if (analysisError()) {
+      <div class="error-state">
+        <strong>Eroare analiza</strong>
+        <p>{{ analysisError() }}</p>
+      </div>
+    } @else if (analysisResult(); as result) {
+      <app-analysis-result [result]="result" />
+    }
+  </div>
+}

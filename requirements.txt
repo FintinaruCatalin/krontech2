@@ -1,0 +1,10 @@
+fastapi
+bcrypt<4.1
+joblib
+passlib[bcrypt]
+pydantic
+psycopg2-binary
+python-jose[cryptography]
+scikit-learn
+sqlalchemy
+uvicorn

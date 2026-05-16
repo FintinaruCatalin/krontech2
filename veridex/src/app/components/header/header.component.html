@@ -1,0 +1,22 @@
+<nav class="nav">
+  <a class="nav-logo" routerLink="/" aria-label="Phishield home">
+    <div class="logo-icon">
+      <svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 1L14 4V8C14 11.3 11.3 14 8 15C4.7 14 2 11.3 2 8V4L8 1Z"/>
+      </svg>
+    </div>
+    Phishield
+  </a>
+
+  <div class="nav-tabs">
+    <a class="nav-tab" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Analiza SMS/URL</a>
+    <a class="nav-tab" routerLink="/fake-news" routerLinkActive="active">Fake News</a>
+    <a class="nav-tab" routerLink="/how" routerLinkActive="active">
+      <span class="nav-help-icon" aria-hidden="true">?</span>
+      Cum funcționează
+    </a>
+    <a class="nav-tab" routerLink="/extension" routerLinkActive="active">
+      Extensie <span class="nav-badge">BETA</span>
+    </a>
+  </div>
+</nav>

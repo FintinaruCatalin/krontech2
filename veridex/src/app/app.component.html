@@ -1,0 +1,28 @@
+<div class="app-container">
+  <header class="top-navbar">
+    <a class="brand-logo" routerLink="/" aria-label="Phishield dashboard">
+      <span class="brand-shield" aria-hidden="true">P</span>
+      <span>Phishield</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigatie principala">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/history" routerLinkActive="active">Istoric</a>
+      <a routerLink="/how" routerLinkActive="active">
+        <span class="nav-help-icon" aria-hidden="true">?</span>
+        Cum functioneaza ?
+      </a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="nav-action primary" routerLink="/" fragment="analyzer">Scaneaza acum</a>
+      <a class="nav-action" routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn()">Login</a>
+      <a class="nav-action" routerLink="/register" routerLinkActive="active" *ngIf="!authService.isLoggedIn()">Register</a>
+      <button type="button" class="nav-action nav-logout" *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

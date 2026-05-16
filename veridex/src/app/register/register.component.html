@@ -1,0 +1,35 @@
+<section class="auth-page">
+  <div class="login-card auth-card">
+    <div class="auth-mark">P</div>
+    <h2>Creare cont</h2>
+    <p class="auth-copy">Configureaza accesul pentru dashboard, istoric si scanari securizate.</p>
+
+    <p *ngIf="errorMessage" class="auth-error">{{ errorMessage }}</p>
+
+    <form (ngSubmit)="onRegister()">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" autocomplete="email" required>
+
+      <label>Username</label>
+      <input type="text" [(ngModel)]="username" name="username" autocomplete="username">
+
+      <label>Nume complet</label>
+      <input type="text" [(ngModel)]="fullName" name="fullName" autocomplete="name">
+
+      <label>Parola</label>
+      <input type="password" [(ngModel)]="password" name="password" autocomplete="new-password" required>
+
+      <label>Confirma parola</label>
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" autocomplete="new-password" required>
+
+      <button type="submit" class="cta-button" [disabled]="loading">
+        {{ loading ? 'Se creeaza contul...' : 'Creeaza cont' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Ai deja cont?
+      <a routerLink="/login">Autentifica-te</a>
+    </p>
+  </div>
+</section>

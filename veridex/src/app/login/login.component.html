@@ -1,0 +1,26 @@
+<section class="auth-page">
+  <div class="login-card auth-card">
+    <div class="auth-mark">P</div>
+    <h2>Autentificare</h2>
+    <p class="auth-copy">Intra in centrul Phishield pentru a continua scanarea amenintarilor.</p>
+
+    <p *ngIf="errorMessage" class="auth-error">{{ errorMessage }}</p>
+
+    <form (ngSubmit)="onLogin()">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" autocomplete="email" required>
+
+      <label>Parola</label>
+      <input type="password" [(ngModel)]="password" name="password" autocomplete="current-password" required>
+
+      <button type="submit" class="cta-button" [disabled]="loading">
+        {{ loading ? 'Se autentifica...' : 'Intra in cont' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Nu ai cont?
+      <a routerLink="/register">Creeaza unul</a>
+    </p>
+  </div>
+</section>

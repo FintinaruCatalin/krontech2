@@ -1,0 +1,78 @@
+<div class="history-card">
+  <div class="history-header">
+    <div>
+      <span class="result-title">Ultimele scanari</span>
+      <p class="history-subtitle">Rezultate salvate din baza de date</p>
+    </div>
+  </div>
+
+  <div class="history-toolbar">
+    <div class="history-search">
+      <span class="search-icon" aria-hidden="true"></span>
+      <input
+        type="text"
+        placeholder="Caută în istoric..."
+        [(ngModel)]="historySearch"
+        aria-label="Caută în istoric"
+      />
+    </div>
+
+    <div class="history-filter-group" aria-label="Filtru tip scanare">
+      <span class="filter-label">Tip</span>
+      <div class="history-filters">
+        <button class="filter-btn" [class.active]="selectedHistoryFilter === 'all'" (click)="setFilter('all')">Toate</button>
+        <button class="filter-btn" [class.active]="selectedHistoryFilter === 'sms'" (click)="setFilter('sms')">SMS</button>
+        <button class="filter-btn" [class.active]="selectedHistoryFilter === 'url'" (click)="setFilter('url')">URL</button>
+      </div>
+    </div>
+
+    <div class="history-filter-group" aria-label="Filtru risc">
+      <span class="filter-label">Risc</span>
+    <div class="history-filters">
+        <button class="filter-btn" [class.active]="selectedRiskFilter === 'all'" (click)="setRiskFilter('all')">Toate riscurile</button>
+        <button class="filter-btn" [class.active]="selectedRiskFilter === 'safe'" (click)="setRiskFilter('safe')">Safe</button>
+        <button class="filter-btn" [class.active]="selectedRiskFilter === 'suspicious'" (click)="setRiskFilter('suspicious')">Suspicious</button>
+        <button class="filter-btn" [class.active]="selectedRiskFilter === 'dangerous'" (click)="setRiskFilter('dangerous')">Dangerous</button>
+      </div>
+    </div>
+  </div>
+
+  @if (historyLoading) {
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <span>Se incarca istoricul...</span>
+    </div>
+  } @else if (historyError) {
+    <div class="error-state">
+      <strong>Eroare istoric</strong>
+      <p>{{ historyError }}</p>
+    </div>
+  } @else if (visibleHistory().length === 0) {
+    <div class="empty-history">Nu există rezultate pentru filtrele selectate.</div>
+  } @else {
+    <div class="history-list">
+      @for (item of visibleHistory(); track item.id) {
+        <div class="history-item">
+          <div class="history-main">
+            <div class="history-meta">
+              <span class="type-badge">{{ typeLabel(item.scan_type) }}</span>
+              <span class="verdict-badge history-risk" [ngClass]="getRiskClass(item.risk)">
+                {{ riskLabel(item.risk) }}
+              </span>
+              <span class="history-date">{{ formatDateLocal(item.created_at) }}</span>
+            </div>
+            <p class="history-preview">{{ inputPreview(item.input_value) }}</p>
+            @if (item.recommendation) {
+              <p class="history-recommendation">{{ recommendationPreview(item.recommendation) }}</p>
+            }
+          </div>
+
+          <div class="history-side">
+            <span class="score-label">Trust score</span>
+            <span class="history-score">{{ item.trust_score }}/100</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

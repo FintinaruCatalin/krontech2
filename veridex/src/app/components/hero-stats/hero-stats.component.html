@@ -1,0 +1,70 @@
+<section class="hero-shell">
+  <div class="hero-copy">
+    <div class="hero-label">AI security command center</div>
+    <h1 class="hero-title">DETECT. PROTECT. STAY AHEAD.</h1>
+    <p class="hero-sub">Detectare AI pentru phishing, scam-uri si linkuri periculoase, gandita pentru decizii rapide inainte ca atacul sa ajunga la utilizator.</p>
+    <div class="hero-actions">
+      <a class="cta-button hero-cta" routerLink="/" fragment="analyzer">Scaneaza acum</a>
+      <a class="ghost-button" routerLink="/how">Vezi cum functioneaza</a>
+    </div>
+  </div>
+
+  <div class="cyber-visual" aria-hidden="true">
+    <div class="radar-ring"></div>
+    <div class="phone-panel">
+      <div class="phone-top">
+        <span class="signal-dot"></span>
+        <span>PHISHIELD OS</span>
+      </div>
+      <div class="shield-core">◆</div>
+      <div class="scan-line"></div>
+      <div class="mini-metric">
+        <span>Threat scan</span>
+        <strong>ACTIVE</strong>
+      </div>
+      <div class="mini-bars">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="floating-card card-one">
+      <span>Malicious URL</span>
+      <strong>BLOCKED</strong>
+    </div>
+    <div class="floating-card card-two">
+      <span>AI confidence</span>
+      <strong>98%</strong>
+    </div>
+  </div>
+</section>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-card-top">
+      <span class="stat-icon">#</span>
+      <span class="stat-tag">Volum</span>
+    </div>
+    <div class="stat-number">{{ totalAnalyses }}</div>
+    <div class="stat-label">Analize totale</div>
+    <p class="stat-copy">Scanari SMS si URL procesate</p>
+  </div>
+  <div class="stat-card">
+    <div class="stat-card-top">
+      <span class="stat-icon danger">!</span>
+      <span class="stat-tag">Alerte</span>
+    </div>
+    <div class="stat-number red">{{ alertsCount }}</div>
+    <div class="stat-label">Alerte generate</div>
+    <p class="stat-copy">Cazuri marcate cu risc</p>
+  </div>
+  <div class="stat-card">
+    <div class="stat-card-top">
+      <span class="stat-icon amber">%</span>
+      <span class="stat-tag">Risc</span>
+    </div>
+    <div class="stat-number amber">{{ riskRate | number:'1.0-1' }}%</div>
+    <div class="stat-label">Rata risc detectat</div>
+    <p class="stat-copy">Procent din analize cu alerta</p>
+  </div>
+</div>

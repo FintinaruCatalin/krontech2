@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phishield</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img">
+            <path d="M12 2.2 4.6 5.1v5.6c0 4.6 3 8.9 7.4 11.1 4.4-2.2 7.4-6.5 7.4-11.1V5.1L12 2.2Zm0 3.1 4.6 1.8v3.6c0 3-1.8 5.9-4.6 7.6-2.8-1.7-4.6-4.6-4.6-7.6V7.1L12 5.3Z"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Phishield</h1>
+          <p>AI phishing scanner</p>
+        </div>
+      </header>
+
+      <section class="glass-card current-page" aria-labelledby="current-page-title">
+        <div class="section-heading">
+          <span id="current-page-title">Pagina curentă</span>
+          <img id="favicon" class="favicon" alt="" hidden>
+        </div>
+        <p id="current-url" class="url-text">Se încarcă pagina...</p>
+      </section>
+
+      <button id="scan-button" class="scan-button" type="button">
+        <span class="scan-icon" aria-hidden="true"></span>
+        <span id="scan-label">Scanează pagina</span>
+      </button>
+
+      <section id="status-card" class="glass-card status-card" hidden aria-live="polite"></section>
+
+      <section id="result-card" class="glass-card result-card" hidden aria-live="polite">
+        <div class="result-topline">
+          <div>
+            <span class="eyebrow">Rezultat</span>
+            <h2 id="risk-title">-</h2>
+          </div>
+          <span id="risk-badge" class="risk-badge">-</span>
+        </div>
+
+        <div class="score-wrap">
+          <div class="score-ring" aria-hidden="true">
+            <span id="score-value">0</span>
+          </div>
+          <div>
+            <span class="eyebrow">Trust score</span>
+            <p id="score-summary">Analiză finalizată.</p>
+          </div>
+        </div>
+
+        <div class="result-block">
+          <span class="eyebrow">Motive</span>
+          <ul id="reasons-list"></ul>
+        </div>
+
+        <div class="result-block recommendation">
+          <span class="eyebrow">Recomandare</span>
+          <p id="recommendation-text"></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<section class="page">
+  <app-hero-stats
+    [totalAnalyses]="totalAnalyses()"
+    [alertsCount]="alertsCount()"
+    [riskRate]="riskRate()"
+  />
+
+  <section class="dashboard-card">
+    <div class="dashboard-heading">
+      <div>
+        <span class="section-label">Live threat intelligence</span>
+        <h2>Dashboard securitate</h2>
+      </div>
+      <span class="dashboard-pill">Live din istoric</span>
+    </div>
+
+    <div class="dashboard-grid">
+      @let latestRisk = latestScanRisk();
+      <div class="dashboard-metric">
+        <span class="metric-label">Total analize</span>
+        <strong>{{ totalAnalyses() }}</strong>
+      </div>
+      <div class="dashboard-metric">
+        <span class="metric-label">Alerte generate</span>
+        <strong>{{ alertsCount() }}</strong>
+      </div>
+      <div class="dashboard-metric">
+        <span class="metric-label">Rata risc</span>
+        <strong>{{ riskRate() | number:'1.0-1' }}%</strong>
+      </div>
+      <div class="dashboard-metric">
+        <span class="metric-label">Ultimul risc</span>
+        <strong class="dashboard-risk" [ngClass]="riskClass(latestRisk.toLowerCase())">
+          {{ latestRisk }}
+        </strong>
+      </div>
+      <div class="dashboard-metric">
+        <span class="metric-label">Scanari SMS in lista</span>
+        <strong>{{ smsScansCount() }}</strong>
+      </div>
+      <div class="dashboard-metric">
+        <span class="metric-label">Scanari URL in lista</span>
+        <strong>{{ urlScansCount() }}</strong>
+      </div>
+    </div>
+  </section>
+
+  <section id="analyzer" class="analyzer-section">
+    <div class="section-kicker">Analyzer</div>
+    <h2 class="section-heading">Scaneaza amenintari in timp real</h2>
+    <app-analysis-form (analysisCompleted)="handleAnalysisCompleted()" />
+  </section>
+
+  <app-history (historyLoaded)="handleHistoryLoaded($event)" />
+</section>
