@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
-const backendBaseUrl = 'http://127.0.0.1:8002';
+const backendBaseUrl = 'https://phishield-v01v.onrender.com';
 const publicAuthPaths = ['/auth/login', '/auth/register'];
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {

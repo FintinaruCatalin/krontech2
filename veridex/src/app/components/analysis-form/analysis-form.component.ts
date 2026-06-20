@@ -81,7 +81,7 @@ export class AnalysisFormComponent {
         this.analysisCompleted.emit();
       },
       error: () => {
-        this.analysisError.set('Backend-ul nu poate fi accesat momentan. Verifica daca serverul ruleaza la http://127.0.0.1:8002.');
+        this.analysisError.set('Backend-ul nu poate fi accesat momentan. Încearcă din nou în câteva secunde.');
         this.analysisLoading.set(false);
       }
     });

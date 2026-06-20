@@ -7,7 +7,7 @@ import { LoginRequest, RegisterRequest, TokenResponse, UserResponse } from '../m
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly baseUrl = 'http://127.0.0.1:8002';
+  private readonly baseUrl = 'https://phishield-v01v.onrender.com';
   private readonly tokenKey = 'veridex_access_token';
 
   constructor(private readonly http: HttpClient) {}
