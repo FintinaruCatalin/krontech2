@@ -33,7 +33,7 @@ export interface StatsResponse {
   providedIn: 'root'
 })
 export class AnalysisService {
-  private readonly baseUrl = 'http://127.0.0.1:8002';
+  private readonly baseUrl = 'https://anti-scam-backend.onrender.com';
 
   constructor(private readonly http: HttpClient) {}
 
